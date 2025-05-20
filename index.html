@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <title>Mundo Matemágico - Portal</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+
+    <button onclick="toggleModoOscuro()" id="boton-modo">🌙</button>
+
+    <h1>✨ Mundo Matemágico ✨</h1>
+
+    <div id="formulario-inicio">
+        <div class="contenedor">
+            <div class="emoji">🔐 Iniciar sesión</div>
+            <div style="margin-bottom: 10px;">
+                <label for="tipo-usuario">¿Eres?</label>
+                <select id="tipo-usuario">
+                    <option value="estudiante">Estudiante</option>
+                    <option value="profesor">Profesor</option>
+                </select>
+            </div>
+            <input type="text" id="login-usuario" placeholder="Nombre completo (Usuario)">
+            <div class="password-container">
+                <input type="password" id="login-clave" placeholder="Contraseña">
+                <span class="toggle-password" onclick="togglePassword('login-clave')">👁️</span>
+            </div>
+
+            <button onclick="iniciarSesion()">Entrar</button>
+
+            <div style="text-align: right; margin-bottom: 10px;">
+                <button type="button" onclick="olvideMiContrasena()" style="background: none; border: none; color: #007bff; cursor: pointer; font-size: 14px;">¿Olvidaste tu contraseña?</button>
+            </div>
+        </div>
+
+        <div class="contenedor">
+            <div class="emoji">🧚 Registro Estudiante</div>
+            <input type="text" id="registro-usuario-estudiante" placeholder="Nombre completo (Usuario)">
+            <input type="number" id="documento-usuario-estudiante" placeholder="Numero de documento (TI)">
+            <input type="number" id="edad-usuario-estudiante" placeholder="Edad">
+            <input type="email" id="email-usuario-estudiante" placeholder="Email institucional">
+            
+            <div class="password-container">
+                <input type="password" id="registro-clave-estudiante" placeholder="Contraseña">
+                <span class="toggle-password" onclick="togglePassword('registro-clave-estudiante')">👁️</span>
+            </div>
+
+
+            <button onclick="registrarEstudiante()">Registrarse</button>
+        </div>
+
+        <div style="text-align: center; margin-bottom: 15px;">
+            <button onclick="mostrarRegistroProfesor()">¿Eres profesor? Regístrate aquí</button>
+        </div>
+
+
+        <div class="contenedor" id="registro-profesor-seccion" style="display: none;">
+            <div class="emoji">👨‍🏫 Registro Profesor</div>
+            <input type="text" id="registro-usuario-profesor" placeholder="Nombre completo del profesor (usuario)">
+            <input type="number" id="documento-usuario-profesor" placeholder="Numero de documento (CC)">
+
+            <input type="email" id="email-profesor" placeholder="Email">
+
+            <div class="password-container">
+                <input type="password" id="registro-clave-profesor" placeholder="Contraseña">
+                <span class="toggle-password" onclick="togglePassword('registro-clave-profesor')">👁️</span>
+            </div>
+
+            <button onclick="registrarProfesor()">Registrarse</button>
+        </div>
+
+
+    </div>
+
+    <div id="menu-juego-estudiante" class="contenedor" style="display:none;">
+        <div class="titulo-juego">¡Bienvenido al Mundo Mágico, Estudiante! 🧙</div>
+        <p>¡Aprende y diviértete con las matemáticas!</p>
+        <button onclick="jugar()">🎮 Jugar</button><br>
+        <button onclick="verCalificaciones()">📊 Mis Calificaciones</button><br>
+        <button onclick="verProceso()">🌀 Mi Proceso</button><br>
+        <button onclick="verPersonajes()">🧙‍♂️ Personajes Mágicos</button>
+        <button onclick="preguntasconnuestraIA()">🤖 Pregunta a la IA</button>
+        <button onclick="comoJugar()">🧠 ¿Cómo jugar?</button><br>
+        <button onclick="configuracion()">⚙️ Configuración</button><br>
+        <button onclick="cerrarSesion()">🚪 Cerrar Sesión</button>
+    </div>
+
+    <div id="menu-juego-profesor" class="contenedor" style="display: none;">
+        <div class="titulo-juego">¡Bienvenido, Profesor! 👨‍🏫</div>
+        <p>¡Gestiona el aprendizaje de tus estudiantes!</p>
+        <button onclick="verEstudiantes()">🧑‍🎓 Ver Estudiantes</button><br>
+        <button onclick="crearLecciones()">📝 Crear Lecciones</button><br>
+        <button onclick="verProgresoGeneral()">📈 Progreso General</button><br>
+        <button onclick="configuracionProfesor()">⚙️ Configuración</button><br>
+        <button onclick="cerrarSesion()">🚪 Cerrar Sesión</button>
+    </div>
+
+    <script src="app.js"></script>
+    <script>
+        function togglePassword(inputId) {
+            const passwordInput = document.getElementById(inputId);
+            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordInput.setAttribute('type', type);
+            const toggleIcon = passwordInput.nextElementSibling;
+            toggleIcon.textContent = type === 'password' ? '👁️' : '🙈';
+        }
+        function mostrarRegistroProfesor() {
+            document.getElementById('registro-profesor-seccion').style.display = 'block';
+        }
+        function olvideMiContrasena() {
+            Swal.fire({
+                title: '¿Olvidaste tu contraseña?',
+                text: 'Por favor, introduce tu nombre de usuario o correo electrónico para recuperarla.',
+                input: 'text',
+                showCancelButton: true,
+                confirmButtonText: 'Enviar solicitud',
+                cancelButtonText: 'Cancelar',
+                preConfirm: (value) => {
+                    // Aquí iría la lógica para enviar la solicitud de recuperación de contraseña
+                    return new Promise((resolve) => {
+                        setTimeout(() => {
+                            if (!value) {
+                                Swal.showValidationMessage('Por favor, introduce un nombre de usuario o correo electrónico');
+                            }
+                            resolve();
+                        }, 1000);
+                    });
+                },
+                allowOutsideClick: () => !Swal.isLoading()
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire('¡Solicitud enviada!', 'Se ha enviado un correo electrónico con instrucciones para restablecer tu contraseña (si la cuenta existe).', 'success');
+                    // Aquí podrías redirigir a una página de confirmación
+                }
+            });
+        }
+    </script>
+</body>
+</html>

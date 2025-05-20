@@ -1,0 +1,158 @@
+body {
+  font-family: 'Comic Sans MS', cursive;
+  background-color: #87CEEB;
+  background-image: url('https://i.imgur.com/k5zD4xJ.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  text-align: center;
+  padding: 30px;
+  color: #000000;
+}
+
+.contenedor {
+  background: rgba(255, 255, 255, 0.9);
+  border: 3px dashed #ff7f50;
+  border-radius: 25px;
+  padding: 25px;
+  margin: 20px auto;
+  width: 90%;
+  max-width: 350px;
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+  animation: aparecer 1s ease;
+}
+
+
+.contenedor label {
+  display: block; /* Pone la etiqueta en una nueva línea */
+  margin-bottom: 5px; /* Espacio entre la etiqueta y el select */
+  color: #333; /* Un color de texto legible */
+  font-weight: bold; /* Resalta la etiqueta */
+}
+
+.contenedor select {
+  width: 35%; /* Ocupa todo el ancho del contenedor */
+  padding: 10px; /* Espacio dentro del select */
+  margin-bottom: 10px; /* Espacio debajo del select */
+  border: 1px solid #ccc; /* Borde sutil */
+  border-radius: 20px; /* Bordes redondeados */
+  font-size: 16px; /* Tamaño de fuente legible */
+  background-color: #ffffff; /* Un fondo claro */
+}
+
+.contenedor select:focus {
+  outline: none; /* Elimina el borde de enfoque predeterminado */
+  border-color: #007bff; /* Cambia el color del borde al enfocar */
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Añade una sombra suave al enfocar */
+}
+
+
+
+
+
+
+input {
+  padding: 12px;
+  margin: 8px;
+  width: 85%;
+  border: 2px solid #DEB887;
+  border-radius: 12px;
+  font-size: 16px;
+  background-color: #a9eea9;
+}
+
+button {
+  padding: 12px 18px;
+  background: linear-gradient(45deg, #f06292, #ba68c8);
+  border: none;
+  color: white;
+  font-weight: bold;
+  border-radius: 15px;
+  cursor: pointer;
+  margin: 5px 0;
+  font-size: 16px;
+  transition: transform 0.2s;
+  width: 80%;
+}
+
+button:hover {
+  transform: scale(1.05);
+  background: linear-gradient(80deg, #ba68c8, #f06292);
+}
+
+.emoji {
+  font-size: 24px;
+  display: inline-block;
+  margin-bottom: 10px;
+}
+
+
+
+#menu-juego {
+  display:none;
+}
+
+
+
+.titulo-juego {
+  font-size: 26px;
+  margin-bottom: 20px;
+  color: #ff4081;
+}
+
+.password-container {
+  position: relative; /* Para posicionar el icono dentro */
+}
+.toggle-password {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-size: 16px;
+  user-select: none; /* Evita que se seleccione el texto del icono */
+}
+
+body.modo-oscuro {
+  background-color: #1e1e2f;
+  background-image: none;
+  color: #f1f1f1;
+}
+
+body.modo-oscuro .contenedor {
+  background: rgba(40, 40, 60, 0.9);
+  border-color: #ff9800;
+}
+
+body.modo-oscuro h1,
+body.modo-oscuro h2,
+body.modo-oscuro .titulo-juego {
+  color: #ffc107;
+}
+
+body.modo-oscuro input {
+  background-color: #2c2c3e;
+  color: #fff;
+  border: 2px solid #ffb300;
+}
+
+body.modo-oscuro button {
+  background: linear-gradient(45deg, #ff9800, #ff5722);
+}
+
+#boton-modo {
+  position:fixed;
+  top: 15px;
+  right: 15px;
+  width: 60px;
+  height: 60px;
+  background: #333;
+  border: none;
+  color: white;
+  border-radius: 50%;
+  font-size: 24px;
+  z-index: 999;
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
